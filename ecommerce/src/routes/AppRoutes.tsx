@@ -7,6 +7,8 @@ import Products from "../components/Products"
 import Header from "../components/Header"
 import Cart from "../components/Cart"
 import { CartProvider } from "../CartContext"
+import Service from "../components/Service"
+import Contact from "../components/contact"
 
 const AppRoutes = () => {
     return (
@@ -19,8 +21,10 @@ const AppRoutes = () => {
                             <Route index element={<Navigate to="/login" replace />} />
                             <Route element={<MainLayout />}>
                                 <Route path="/header" element={<Header />} />
-                                <Route path="/products" element={< Products />} />
+                                <Route path="/home" element={< Products />} />
                                 <Route path="/cart" element={<Cart />} />
+                                <Route path="/service" element={<Service />} />
+                                <Route path="/contact" element={<Contact />} />
                             </Route>
                         </Route>
                     </Routes>
