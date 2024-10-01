@@ -33,7 +33,7 @@ const Products = () => {
                     <button
                         type="button"
                         className="w-full py-2 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 rounded-lg shadow-md hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition duration-200"
-                        onClick={() => addToCart(item)} >
+                        onClick={() => addToCart(item)}>
                         Add to Cart
                     </button>
                 </div>

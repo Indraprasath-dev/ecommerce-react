@@ -20,11 +20,12 @@ const Header = () => {
                             Services
                         </Link>
                     </li>
-                    <li>
+                    <li>    
                         <Link 
-                            className="text-white hover:underline transition duration-300" 
+                            className="text-white hover:underline transition duration-300 relative" 
                             to="/cart">
                             Cart
+                    
                         </Link>
                     </li>
                     <li>
