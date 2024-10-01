@@ -20,8 +20,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
             } else {
                 return [...prevItems, { ...item, quantity: 1 }]
             }
-        });
-    };
+        })
+    }
 
     const removeFromCart = (id: number) => {
         setCartItems((prevItems) => {
@@ -37,18 +37,22 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
                 return prevItems.filter((item) => item.id !== id)
             }
         })
-    };
+    }
 
     const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
 
+    const clearCart = () =>{
+        setCartItems([])
+    }
+
     useEffect(() => {
         const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
-        setCount(totalQuantity);
-    }, [cartItems]);
+        setCount(totalQuantity)
+    }, [cartItems])
 
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, totalAmount, count }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, totalAmount, count, clearCart }}>
             {children}
         </CartContext.Provider>
-    );
-};
+    )
+}

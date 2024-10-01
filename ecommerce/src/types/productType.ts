@@ -13,6 +13,7 @@ export interface CartContextProps {
     cartItems: QuantityCartItem[],
     addToCart: (item: CartItem) => void,
     removeFromCart: (id: number) => void,
-    totalAmount: number
-    count: number
+    totalAmount: number,
+    count: number,
+    clearCart: () => void
 }

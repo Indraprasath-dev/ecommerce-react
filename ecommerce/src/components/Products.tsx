@@ -4,7 +4,7 @@ import { list } from "../datas/ProductData"
 
 const Products = () => {
     const { addToCart } = useContext(CartContext)!;
-   
+    
     return (
         <div className="flex flex-wrap justify-center gap-6 my-10 mx-10">
             {list.map(item => (

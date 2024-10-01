@@ -8,7 +8,7 @@ import Header from "../components/Header"
 import Cart from "../components/Cart"
 import { CartProvider } from "../CartContext"
 import Service from "../components/Service"
-import Contact from "../components/contact"
+import Contact from "../components/Contact"
 
 const AppRoutes = () => {
     return (
