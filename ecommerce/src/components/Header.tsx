@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../CartContext";
 
 const Header = () => {
+    const {count} = useContext(CartContext)!
+
     return (
         <nav className="bg-gradient-to-r from-blue-500 to-purple-600 dark:bg-gray-700">
             <div className="max-w-screen-xl px-4 py-3 mx-auto flex justify-between items-center">
@@ -20,13 +24,17 @@ const Header = () => {
                             Services
                         </Link>
                     </li>
-                    <li>    
+                    <li className="relative">    
                         <Link 
-                            className="text-white hover:underline transition duration-300 relative" 
+                            className="text-white hover:underline transition duration-300 " 
                             to="/cart">
                             Cart
-                    
                         </Link>
+                        {count>0 && (
+                        <div className="absolute -top-3 -right-4 bg-blue-500 text-white rounded-full text-xs px-2 py-1">
+                            {count}
+                        </div>
+                        )}
                     </li>
                     <li>
                         <Link 

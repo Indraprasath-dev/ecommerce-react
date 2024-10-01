@@ -1,27 +1,11 @@
-import { createContext, useState, ReactNode } from "react";
-
-interface CartItem {
-    id: number,
-    product: string,
-    price: number,
-    image: string,
-}
-
-interface QuantityCartItem extends CartItem {
-    quantity: number;
-}
-
-interface CartContextProps {
-    cartItems: QuantityCartItem[],
-    addToCart: (item: CartItem) => void,
-    removeFromCart: (id: number) => void,
-    totalAmount: number
-}
+import { createContext, useState, ReactNode, useEffect } from "react";
+import { CartItem, QuantityCartItem, CartContextProps } from "../src/types/productType"
 
 export const CartContext = createContext<CartContextProps | undefined>(undefined)
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
     const [cartItems, setCartItems] = useState<QuantityCartItem[]>([])
+    const [count, setCount] = useState(0)
 
     const addToCart = (item: CartItem) => {
         setCartItems((prevItems) => {
@@ -57,8 +41,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
 
+    useEffect(() => {
+        const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+        setCount(totalQuantity);
+    }, [cartItems]);
+
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, totalAmount }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, totalAmount, count }}>
             {children}
         </CartContext.Provider>
     );
