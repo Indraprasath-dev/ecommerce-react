@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../CartContext";
 import { useNavigate } from "react-router-dom";
+import Button from "./Button";
 const Cart = () => {
     const navigate = useNavigate()
 
@@ -57,21 +58,15 @@ const Cart = () => {
             )}
 
             <div>
-                <button
-                    type="button"
-                    className="p-2 mt-5 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 rounded-lg shadow-lg hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-green-300 dark:focus:ring-green-800 transition duration-200"
-                    onClick={BuyNow}>
+                <Button onClick={BuyNow} variant="secondary">
                     Buy Now
-                </button>
+                </Button>
             </div>
 
             <div>
-                <button
-                    type="button"
-                    className="p-2 mt-5 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 rounded-lg shadow-md hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition duration-200"
-                    onClick={handleclick}>
+                <Button onClick={handleclick} variant="primary">
                     Go to home page
-                </button>
+                </Button>
             </div>
 
         </div>

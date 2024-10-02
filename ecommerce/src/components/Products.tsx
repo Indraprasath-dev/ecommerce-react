@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { CartContext } from "../CartContext";
 import { list } from "../datas/ProductData"
+import Button from "./Button";
 
 const Products = () => {
     const { addToCart } = useContext(CartContext)!;
-    
+
     return (
         <div className="flex flex-wrap justify-center gap-6 my-10 mx-10">
             {list.map(item => (
@@ -19,11 +20,9 @@ const Products = () => {
                     <p className="text-lg font-medium text-gray-700 dark:text-gray-400 mb-4">
                         Rs. {item.price}
                     </p>
-                    <button type="button"
-                        className="w-full py-2 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 rounded-lg shadow-md hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition duration-200"
-                        onClick={() => addToCart(item)}>
+                    <Button onClick={() => addToCart(item)} variant="primary">
                         Add to Cart
-                    </button>
+                    </Button>
                 </div>
             ))}
         </div>
