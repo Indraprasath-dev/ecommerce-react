@@ -6,7 +6,7 @@ import MainLayout from "../layouts/MainLayout"
 import Products from "../components/Products"
 import Header from "../components/Header"
 import Cart from "../components/Cart"
-import { CartProvider } from "../CartContext"
+import { CartProvider } from "../context/CartContext"
 import Service from "../components/Service"
 import Contact from "../components/Contact"
 

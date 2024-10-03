@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CartContext } from "../CartContext";
+import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 const Cart = () => {
@@ -9,7 +9,7 @@ const Cart = () => {
         navigate('/home')
     }
 
-    const { cartItems, totalAmount, removeFromCart, clearCart } = useContext(CartContext)!
+    const { cartItems, totalAmount, removeFromCart, addFromCart, clearCartItem, clearCart } = useContext(CartContext)!
 
     const BuyNow = () => {
         if (cartItems.length > 0) {
@@ -36,17 +36,27 @@ const Cart = () => {
                                     <p className="text-lg font-semibold text-gray-900">{item.product}</p>
                                     <p className="text-sm text-gray-500">Rs. {item.price}</p>
                                 </div>
-                                <div className="ml-10 mt-4 text-sm text-gray-500">
+                                
+                            </div>
+                            <div className="flex items-center justify-center">
+                                <Button
+                                    onClick={() => addFromCart(item.id)} variant="primary" >
+                                        +
+                                </Button>
+                                <div className="mx-2 mt-4 text-sm text-gray-500">
                                     count: {item.quantity}
                                 </div>
-                            </div>
-                            <div>
-                                <button className="px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg shadow hover:bg-red-600 focus:outline-none"
-                                    onClick={() => removeFromCart(item.id)}>
-                                    Remove
-                                </button>
-                            </div>
+                                <Button
+                                    onClick={() => removeFromCart(item.id)} variant="secondary" className=" mr-2 ">
+                                        -
+                                </Button>
 
+                                <Button
+                                    onClick={() => clearCartItem(item.id)} variant="danger" >
+                                        Remove
+                                </Button>
+
+                            </div>
                         </div>
 
                     ))}
