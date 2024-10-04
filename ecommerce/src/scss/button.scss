@@ -1,0 +1,35 @@
+.primary {
+    background: linear-gradient(to right, #3b82f6, #2563eb, #1d4ed8);
+
+    &:hover {
+        background-color: blue
+    }
+
+    &:active {
+        background-color:  blue
+    }
+}
+
+.secondary {
+    background: linear-gradient(to right, #22c55e, #16a34a, #15803d);
+
+    &:hover {
+        background-color: green
+    }
+
+    &:active {
+        background-color:  green
+    }
+}
+
+.danger {
+    background: linear-gradient(to right, #ef4444, #dc2626, #b91c1c);
+    
+    &:hover {
+        background-color: red
+    }
+
+    &:active {
+        background-color:  red
+    }
+}

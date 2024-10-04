@@ -3,12 +3,12 @@ import Login from "../pages/Login"
 import { BrowserRouter } from "react-router-dom"
 import AppLayout from "../layouts/AppLayout"
 import MainLayout from "../layouts/MainLayout"
-import Products from "../components/Products"
 import Header from "../components/Header"
-import Cart from "../components/Cart"
 import { CartProvider } from "../context/CartContext"
-import Service from "../components/Service"
-import Contact from "../components/Contact"
+import Contact from "../pages/Contact"
+import Service from "../pages/Sevice"
+import Home from "../pages/Home"
+import Cart from "../pages/Cart"
 
 const AppRoutes = () => {
     return (
@@ -21,7 +21,7 @@ const AppRoutes = () => {
                             <Route index element={<Navigate to="/login" replace />} />
                             <Route element={<MainLayout />}>
                                 <Route path="/header" element={<Header />} />
-                                <Route path="/home" element={< Products />} />
+                                <Route path="/home" element={< Home />} />
                                 <Route path="/cart" element={<Cart />} />
                                 <Route path="/service" element={<Service />} />
                                 <Route path="/contact" element={<Contact />} />
