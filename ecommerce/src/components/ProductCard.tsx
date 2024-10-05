@@ -1,6 +1,7 @@
 import Button from './Button';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
+import CountButtons from './CountButtons';
 
 interface ProductCardProps {
     id: number,
@@ -11,7 +12,9 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ id, product, price, image, getItemQuantity }: ProductCardProps) => {
-    const { addToCart, addFromCart, removeFromCart } = useContext(CartContext)!;
+    const { addToCart } = useContext(CartContext)!;
+
+    const quantity = getItemQuantity(id);
 
     return (
         <div className="flex flex-col items-center max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow-lg transform transition-transform  dark:bg-gray-800 dark:border-gray-700">
@@ -27,24 +30,15 @@ const ProductCard = ({ id, product, price, image, getItemQuantity }: ProductCard
 
             {getItemQuantity(id) !== 0
                 ? (<div className="flex items-center justify-center">
-                        <Button
-                            onClick={() => addFromCart(id)} variant="primary">
-                            +
-                        </Button>
-                        <div className="mx-2 mt-5 text-sm text-gray-500">
-                            count: {getItemQuantity(id)}
-                        </div>
-                        <Button
-                            onClick={() => removeFromCart(id)} variant="primary">
-                            -
-                        </Button>
-                    </div>)
+                    <CountButtons id={id} quantity={quantity}>
+                    </CountButtons>
+                </div>)
                 : (<Button onClick={() => addToCart({ id, product, price, image })} variant="primary">
-                        Add to Cart
-                    </Button>)
+                    Add to Cart
+                </Button>)
             }
         </div>
     );
 };
 
-export default ProductCard;
+export default ProductCard

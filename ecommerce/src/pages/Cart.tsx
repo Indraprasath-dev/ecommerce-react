@@ -3,6 +3,7 @@ import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import CartCard from "../components/CartCard";
+import { EMPTY, SUCCESS } from "../constants/constants";
 const Cart = () => {
     const navigate = useNavigate()
 
@@ -13,18 +14,18 @@ const Cart = () => {
     const { cartItems, totalAmount, clearCart } = useContext(CartContext)!
 
     const BuyNow = () => {
-        if (cartItems.length > 0) {
+        if (cartItems?.length) {
             clearCart()
-            alert("Purchased successfully")
+            alert(SUCCESS)
         } else {
-            alert("Your cart item is empty")
+            alert(EMPTY)
         }
     }
 
     return (
-        <div className="container mx-auto my-10">
+        <div className="container mx-auto my-20">
             <h1 className="text-2xl font-bold">Cart</h1>
-            {cartItems.length === 0 ? (
+            {cartItems.length === 0  ? (
                 <p>Your cart is empty</p>
             ) : (
                 <div className="mt-6">

@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import { CART, CONTACT, HOME, SERVICE } from "../constants/constants";
 
 const Header = () => {
     const { count } = useContext(CartContext)!
 
     return (
-        <nav className="bg-gradient-to-r from-blue-500 to-purple-600 dark:bg-gray-700">
+        <nav className="fixed top-0 w-full z-50 bg-gradient-to-r from-blue-500 to-purple-600 dark:bg-gray-700">
             <div className="max-w-screen-xl px-4 py-3 mx-auto flex justify-between items-center">
                 <h1 className="text-white text-2xl font-bold">Amazon</h1>
                 <ul className="flex flex-row space-x-8 text-sm font-medium">
@@ -15,7 +16,7 @@ const Header = () => {
                             className={({ isActive }) =>
                                 isActive ? "text-white underline" : "text-white hover:underline transition duration-300"
                             }
-                            to="/home">
+                            to={HOME}>
                             Home
                         </NavLink>
                     </li>
@@ -24,7 +25,7 @@ const Header = () => {
                             className={({ isActive }) => 
                                 isActive ? "text-white underline" : "text-white hover:underline transition duration-300"
                             }
-                            to="/service">
+                            to={SERVICE}>
                             Services
                         </NavLink>
                     </li>
@@ -33,7 +34,7 @@ const Header = () => {
                             className={({ isActive }) => 
                                 isActive ? "text-white underline" : "text-white hover:underline transition duration-300"
                             }
-                            to="/cart">
+                            to={CART}>
                             Cart
                         </NavLink>
                         {count > 0 && (
@@ -47,7 +48,7 @@ const Header = () => {
                             className={({ isActive }) => 
                                 isActive ? "text-white underline" : "text-white hover:underline transition duration-300"
                             }
-                            to="/contact">
+                            to={CONTACT}>
                             Contact
                         </NavLink>
                     </li>

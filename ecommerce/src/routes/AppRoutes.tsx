@@ -9,26 +9,33 @@ import Contact from "../pages/Contact"
 import Service from "../pages/Sevice"
 import Home from "../pages/Home"
 import Cart from "../pages/Cart"
+import { AuthProvider } from "../context/AuthContext"
+import PrivateRoute from "./PrivateRoute"
+import "../constants/constants"
 
 const AppRoutes = () => {
     return (
         <>
             <BrowserRouter>
-                <CartProvider>
-                    <Routes>
-                        <Route path="/" element={<AppLayout />} >
-                            <Route path='/login' element={<Login />} />
-                            <Route index element={<Navigate to="/login" replace />} />
-                            <Route element={<MainLayout />}>
-                                <Route path="/header" element={<Header />} />
-                                <Route path="/home" element={< Home />} />
-                                <Route path="/cart" element={<Cart />} />
-                                <Route path="/service" element={<Service />} />
-                                <Route path="/contact" element={<Contact />} />
+                <AuthProvider>
+                    <CartProvider>
+                        <Routes>
+                            <Route path="/" element={<AppLayout />} >
+                                <Route path="LOGIN" element={<Login />} />
+                                <Route index element={<Navigate to="LOGIN" replace />} />
+                                <Route element={<MainLayout />}>
+                                    <Route path="HEADER" element={<Header />} />
+                                    <Route path="HOME" element={< Home />} />
+                                    <Route element={<PrivateRoute />}>
+                                        <Route path="CART" element={<Cart />} />
+                                        <Route path="SERVICE" element={<Service />} />
+                                        <Route path="CONTACT" element={<Contact />} />
+                                    </Route>
+                                </Route>
                             </Route>
-                        </Route>
-                    </Routes>
-                </CartProvider>
+                        </Routes>
+                    </CartProvider>
+                </AuthProvider>
             </BrowserRouter>
         </>
     )

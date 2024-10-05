@@ -58,7 +58,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }, [cartItems])
 
     const count = useMemo(() => {
-        return cartItems.reduce((total) => total + 1, 0)
+        return cartItems.length
     }, [cartItems])
 
     const clearCart = () => {

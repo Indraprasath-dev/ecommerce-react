@@ -5,14 +5,14 @@ import ProductCard from "../components/ProductCard";
 
 const Products = () => {
     const { cartItems } = useContext(CartContext)!;
-
+    
     const getItemQuantity = (id: number) => {
         const carItem = cartItems.find((item) => item.id === id)
-        return carItem ? carItem.quantity : 0
+        return carItem?.quantity ?? 0
     }
 
     return (
-        <div className="flex flex-wrap justify-center gap-6 my-10 mx-10">
+        <div className="flex flex-wrap justify-center gap-6 my-20 mx-10">
             {list.map(item => (
                 <ProductCard
                     id={item.id}
