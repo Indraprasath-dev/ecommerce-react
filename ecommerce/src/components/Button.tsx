@@ -11,7 +11,7 @@ interface ButtonProps {
 
 const Button = ({ type = 'button', onClick, className = '', children, variant = 'primary' }: ButtonProps) => {
 
-    const baseStyle = "p-2 mt-5 text-white bg-gradient-to-r rounded-lg shadow-md hover:bg-gradient-to-br"
+    const baseStyle = "p-2 mt-5 text-white bg-gradient-to-r rounded-lg shadow-md hover:bg-gradient-to-br flex items-center justify-center"
 
     return (
         <button
