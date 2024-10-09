@@ -9,13 +9,12 @@ export interface QuantityCartItem extends CartItem {
     quantity: number;
 }
 
+export interface Action {
+    type : string;
+    payload?: any;
+}
+
 export interface CartContextProps {
     cartItems: QuantityCartItem[],
-    addToCart: (item: CartItem) => void,
-    removeFromCart: (id: number) => void,
-    addFromCart: (id: number) => void,
-    clearCartItem: (id: number) => void,
-    totalAmount: number,
-    count: number,
-    clearCart: () => void
+    dispatch: (action : Action) => void
 }

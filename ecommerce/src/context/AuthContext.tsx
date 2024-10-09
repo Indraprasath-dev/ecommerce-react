@@ -2,7 +2,12 @@ import { createContext, ReactNode, useState } from "react";
 
 import  {AuthContextProps} from "../types/authContextType"
 
-export const AuthContext = createContext<AuthContextProps | undefined>(undefined) 
+export const defaultAuthContextValue = {
+    isAuthenticated: false,
+    login: () => {}
+}
+
+export const AuthContext = createContext<AuthContextProps>(defaultAuthContextValue) 
 
 export const AuthProvider = ({children}: {children: ReactNode}) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -17,5 +22,6 @@ export const AuthProvider = ({children}: {children: ReactNode}) => {
         </AuthContext.Provider>
     )
 }
+
 
 

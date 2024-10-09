@@ -12,7 +12,7 @@ interface CartCardProps {
 }
 
 const CartCard = ({ id, product, price, image, quantity }: CartCardProps) => {
-    const { clearCartItem } = useContext(CartContext)!;
+    const { dispatch } = useContext(CartContext)!;
 
     return (
         <div key={id} className="flex items-center justify-between p-4 mb-4 bg-white rounded-lg shadow-md border border-gray-300 hover:shadow-lg transition-shadow duration-300">
@@ -29,7 +29,7 @@ const CartCard = ({ id, product, price, image, quantity }: CartCardProps) => {
                 </CountButtons>
 
                 <Button
-                    onClick={() => clearCartItem(id)} variant="danger" className="ml-3">
+                    onClick={() => dispatch({ type: 'CLEAR_CART_ITEM', payload: id})} variant="danger" className="ml-3">
                     Remove
                 </Button>
             </div>

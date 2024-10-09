@@ -1,21 +1,25 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import CartCard from "../components/CartCard";
-import { EMPTY, SUCCESS } from "../constants/constants";
+import { EMPTY, HOME, SUCCESS } from "../constants/constants";
 const Cart = () => {
     const navigate = useNavigate()
 
     const handleclick = () => {
-        navigate('/home')
+        navigate(HOME)
     }
 
-    const { cartItems, totalAmount, clearCart } = useContext(CartContext)!
+    const { cartItems, dispatch } = useContext(CartContext)!
+
+    const totalAmount = useMemo(() => {
+        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
+    }, [cartItems])
 
     const BuyNow = () => {
         if (cartItems?.length) {
-            clearCart()
+            dispatch({ type: 'CLEAR_ITEM' })
             alert(SUCCESS)
         } else {
             alert(EMPTY)

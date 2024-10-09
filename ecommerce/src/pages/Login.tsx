@@ -2,20 +2,21 @@ import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 import Input from "../components/Input"
+import { EMAIL, HOME, INVALID, PASSWORD } from "../constants/constants"
 
 const Login = () => {
 	const navigate = useNavigate()
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
-	const {login} = useContext(AuthContext)!
+	const { login } = useContext(AuthContext)!
 
 	const handleclick = (e: any) => {
 		e.preventDefault()
-		if (email === "demo@i2i.com" && password === "demo") {
+		if (email === EMAIL && password === PASSWORD) {
 			login()
-			navigate('/home')
+			navigate(HOME)
 		} else {
-			alert("Invalid email/password")
+			alert(INVALID)
 		}
 	}
 
@@ -59,3 +60,4 @@ const Login = () => {
 }
 
 export default Login
+

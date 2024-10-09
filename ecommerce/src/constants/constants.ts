@@ -9,3 +9,10 @@ export const CONTACT: string = "/contact"
 // alert message
 export const SUCCESS = "Purchased successfully"
 export const EMPTY = "Your cart item is empty"
+export const INVALID = "Invalid email/password"
+
+// Email for Login
+export const EMAIL = "demo@i2i.com"
+
+// Password for Login
+export const PASSWORD = "demo"

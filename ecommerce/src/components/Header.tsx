@@ -1,10 +1,14 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { CART, CONTACT, HOME, SERVICE } from "../constants/constants";
 
 const Header = () => {
-    const { count } = useContext(CartContext)!
+    const { cartItems } = useContext(CartContext)!
+
+    const count = useMemo(() => {
+        return cartItems.length
+    }, [cartItems])
 
     return (
         <nav className="fixed top-0 w-full z-50 bg-gradient-to-r from-blue-500 to-purple-600 dark:bg-gray-700">

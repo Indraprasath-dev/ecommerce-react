@@ -12,7 +12,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ id, product, price, image, getItemQuantity }: ProductCardProps) => {
-    const { addToCart } = useContext(CartContext)!;
+    const { dispatch } = useContext(CartContext)!;
 
     const quantity = getItemQuantity(id);
 
@@ -33,7 +33,7 @@ const ProductCard = ({ id, product, price, image, getItemQuantity }: ProductCard
                     <CountButtons id={id} quantity={quantity}>
                     </CountButtons>
                 </div>)
-                : (<Button onClick={() => addToCart({ id, product, price, image })} variant="primary">
+                : (<Button onClick={() => dispatch({type: 'ADD_TO_CART', payload: {id, product, price, image} })} variant="primary">
                     Add to Cart
                 </Button>)
             }

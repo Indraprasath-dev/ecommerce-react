@@ -1,72 +1,68 @@
-import { createContext, useState, ReactNode, useMemo } from "react";
-import { CartItem, QuantityCartItem, CartContextProps } from "../types/productType"
+import { createContext, ReactNode, useReducer } from "react";
+import { QuantityCartItem, CartContextProps, Action } from "../types/productType"
 
-export const CartContext = createContext<CartContextProps | undefined>(undefined)
+const defaultCartContextValue = {
+    cartItems: [],
+    dispatch: () => {}
+}
 
-export const CartProvider = ({ children }: { children: ReactNode }) => {
-    const [cartItems, setCartItems] = useState<QuantityCartItem[]>([])
+export const CartContext = createContext<CartContextProps>(defaultCartContextValue)
 
-    const addToCart = (item: CartItem) => {
-        setCartItems((prevItems) => {
-            const existingItem = prevItems.find((cartItem) => cartItem.id === item.id)
+const reducer = (state: QuantityCartItem[], action:  Action) => {
 
-            if (existingItem) {
-                return prevItems.map((cartItem) =>
-                    cartItem.id === item.id
-                        ? { ...cartItem, quantity: cartItem.quantity + 1 }
-                        : cartItem
-                )
-            } else {
-                return [...prevItems, { ...item, quantity: 1 }]
+    switch (action.type) {
+        case 'ADD_TO_CART':
+            {
+                const existingItem = state.find((cartItem) => cartItem.id === action.payload.id)
+
+                if (existingItem) {
+                    return state.map((cartItem) =>
+                        cartItem.id === action.payload.item.id
+                            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                            : cartItem
+                    )
+                } else {
+                    return [...state, { ...action.payload, quantity: 1 }]
+                }
             }
-        })
-    }
+        case 'REMOVE_FROM_CART':
+            {
+                const existingItem = state.find((item) => item.id === action.payload)
 
-    const removeFromCart = (id: number) => {
-        setCartItems((prevItems) => {
-            const existingItem = prevItems.find((item) => item.id === id)
-
-            if (existingItem && existingItem.quantity! > 1) {
-                return prevItems.map((item) =>
-                    item.id === id
-                        ? { ...item, quantity: item.quantity - 1 }
-                        : item
-                )
-            } else {
-                return prevItems.filter((item) => item.id !== id)
+                if (existingItem && existingItem.quantity! > 1) {
+                    return state.map((item) =>
+                        item.id === action.payload
+                            ? { ...item, quantity: item.quantity - 1 }
+                            : item
+                    )
+                } else {
+                    return state.filter((item) => item.id !== action.payload)
+                }
             }
-        })
-    }
-
-    const addFromCart = (id: number) => {
-        setCartItems((prevItems)=>{
-            return prevItems.map((cartItem) =>
-                cartItem.id === id
+        case 'ADD_FROM_CART':
+            return state.map((cartItem) =>
+                cartItem.id === action.payload
                     ? { ...cartItem, quantity: cartItem.quantity + 1 }
                     : cartItem)
-        })
+
+        case 'CLEAR_CART_ITEM':
+            return state.filter((item) => item.id !== action.payload)
+
+        case 'CLEAR_ITEM':
+            return []
+
+        default:
+            return state
     }
+}
 
-    const clearCartItem = (id: number) => {
-        setCartItems((prevItems)=>{
-            return prevItems.filter((item)=>item.id !== id)
-        })
-    }
+export const CartProvider = ({ children }: { children: ReactNode }) => {
+    const initialState: QuantityCartItem[] = []
 
-    const totalAmount = useMemo(() => {
-        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
-    }, [cartItems])
-
-    const count = useMemo(() => {
-        return cartItems.length
-    }, [cartItems])
-
-    const clearCart = () => {
-        setCartItems([])
-    }
+    const [cartItems, dispatch] = useReducer(reducer, initialState);
 
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, addFromCart, clearCartItem, totalAmount, count, clearCart }}>
+        <CartContext.Provider value={{ cartItems, dispatch }}>
             {children}
         </CartContext.Provider>
     )
