@@ -1,15 +1,21 @@
+import axios from "axios";
+import Button from "../components/Button";
 
 const Contact = () => {
+
+    const apiCall = async () => {
+        try {
+            const response = await axios.get("https://jsonplaceholder.typicode.com/todos/1")
+            console.log(response.data)
+        } catch (error) {
+            console.error("Error fetching data", error)
+        }
+    }
+
     return (
-        <div className="flex items-center justify-center mt-20 ">
-            <div className="max-w-2xl p-6 bg-white rounded-lg shadow-lg text-center border border-blue-300">
-                <h1 className="text-3xl font-bold text-gray-800 mb-4">Contact Us</h1>
-                <p className="text-gray-600 text-lg">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati cumque totam,
-                    et tenetur cupiditate adipisci consequatur error sunt ipsa fugiat atque incidunt
-                    quasi ratione, harum iure ad quam assumenda laudantium!
-                </p>
-            </div>
+        <div className="m-20">
+            <h1>API</h1>
+            <Button onClick={apiCall} variant={"primary"}>Api Call</Button>
         </div>
     )
 }

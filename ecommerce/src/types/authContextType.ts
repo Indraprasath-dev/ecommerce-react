@@ -1,4 +1,9 @@
+export interface Action {
+    type: string
+    payload?: string
+}
+
 export interface AuthContextProps {
     isAuthenticated: boolean,
-    login: () => void
-}   
+    dispatch: (action : Action) => void
+}

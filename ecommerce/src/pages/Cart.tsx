@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import CartCard from "../components/CartCard";
 import { EMPTY, HOME, SUCCESS } from "../constants/constants";
+import { ACTION } from "../enum/CartEnum";
 const Cart = () => {
     const navigate = useNavigate()
 
@@ -19,7 +20,7 @@ const Cart = () => {
 
     const BuyNow = () => {
         if (cartItems?.length) {
-            dispatch({ type: 'CLEAR_ITEM' })
+            dispatch({ type: ACTION.CLEAR_ITEM })
             alert(SUCCESS)
         } else {
             alert(EMPTY)
@@ -62,7 +63,7 @@ const Cart = () => {
             </div>
 
         </div>
-    );
-};
+    )
+}
 
 export default Cart;

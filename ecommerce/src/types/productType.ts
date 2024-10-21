@@ -2,16 +2,16 @@ export interface CartItem {
     id: number,
     product: string,
     price: number,
-    image: string,
+    image: string
 }
 
 export interface QuantityCartItem extends CartItem {
-    quantity: number;
+    quantity: number
 }
 
 export interface Action {
-    type : string;
-    payload?: any;
+    type : string,
+    payload?: any
 }
 
 export interface CartContextProps {

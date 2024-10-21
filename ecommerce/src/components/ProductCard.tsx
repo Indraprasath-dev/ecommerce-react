@@ -2,6 +2,7 @@ import Button from './Button';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import CountButtons from './CountButtons';
+import { ACTION } from '../enum/CartEnum';
 
 interface ProductCardProps {
     id: number,
@@ -33,7 +34,7 @@ const ProductCard = ({ id, product, price, image, getItemQuantity }: ProductCard
                     <CountButtons id={id} quantity={quantity}>
                     </CountButtons>
                 </div>)
-                : (<Button onClick={() => dispatch({type: 'ADD_TO_CART', payload: {id, product, price, image} })} variant="primary">
+                : (<Button onClick={() => dispatch({type: ACTION.ADD_TO_CART, payload: {id, product, price, image} })} variant="primary">
                     Add to Cart
                 </Button>)
             }

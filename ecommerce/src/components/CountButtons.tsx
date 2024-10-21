@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import Button from "./Button";
+import { ACTION } from "../enum/CartEnum";
 
 interface CountButtonsProps {
     id: number,
@@ -15,16 +16,17 @@ const CountButtons = ({id,quantity}: CountButtonsProps) => {
     return (
         <>
             <Button
-                onClick={() => dispatch({ type: 'ADD_FROM_CART', payload: id })} variant="primary" className={`${buttonSize}`} >
+                onClick={() => dispatch({ type: ACTION.ADD_FROM_CART, payload: id })} variant="primary" className={`${buttonSize}`} >
                 +
             </Button>
             <div className="mx-2 mt-5 text-sm text-gray-500">
                 count: {quantity}
             </div>
             <Button
-                onClick={() => dispatch({ type: 'REMOVE_FROM_CART', payload: id})} variant="primary" className={`${buttonSize}`}>
+                onClick={() => dispatch({ type: ACTION.REMOVE_FROM_CART, payload: id})} variant="primary" className={`${buttonSize}`}>
                 -
             </Button>
+
         </>
     )
 }

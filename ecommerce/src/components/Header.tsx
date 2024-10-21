@@ -1,14 +1,24 @@
 import { useContext, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
-import { CART, CONTACT, HOME, SERVICE } from "../constants/constants";
+import { CART, CONTACT, HOME, LOGOUT, SERVICE } from "../constants/constants";
+import Icon from "./Icon";
+import { AuthContext } from "../context/AuthContext";
 
 const Header = () => {
     const { cartItems } = useContext(CartContext)!
+    const { isAuthenticated, dispatch } = useContext(AuthContext)!
 
     const count = useMemo(() => {
         return cartItems.length
     }, [cartItems])
+
+    const signout = () => {
+        if(isAuthenticated === true) {
+            alert(LOGOUT)
+            dispatch({ type: "LOGOUT" })
+        }
+    }
 
     return (
         <nav className="fixed top-0 w-full z-50 bg-gradient-to-r from-blue-500 to-purple-600 dark:bg-gray-700">
@@ -30,7 +40,7 @@ const Header = () => {
                                 isActive ? "text-white underline" : "text-white hover:underline transition duration-300"
                             }
                             to={SERVICE}>
-                            Services
+                            Employee Lookup
                         </NavLink>
                     </li>
                     <li className="relative">
@@ -54,8 +64,10 @@ const Header = () => {
                             }
                             to={CONTACT}>
                             Contact
+                            
                         </NavLink>
                     </li>
+                    {isAuthenticated && <Icon onClick={signout}></Icon>}
                 </ul>
             </div>
         </nav>

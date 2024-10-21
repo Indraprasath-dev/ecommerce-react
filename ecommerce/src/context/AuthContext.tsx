@@ -1,27 +1,31 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode } from "react"
+import  {Action, AuthContextProps} from "../types/authContextType"
+import { useReducer } from "react"
 
-import  {AuthContextProps} from "../types/authContextType"
+const authReducer = (state: boolean, action: Action): boolean => {
+    switch (action.type) {
+        case "LOGIN":
+            return true
+        case "LOGOUT":
+            return false
+        default:
+            return state
+    }
+}
 
 export const defaultAuthContextValue = {
     isAuthenticated: false,
-    login: () => {}
+    dispatch: () => null
 }
 
 export const AuthContext = createContext<AuthContextProps>(defaultAuthContextValue) 
 
 export const AuthProvider = ({children}: {children: ReactNode}) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [isAuthenticated, dispatch] = useReducer(authReducer, false)
     
-    const login = () => {
-        setIsAuthenticated(true)
-    }
-
     return (
-        <AuthContext.Provider value={{isAuthenticated, login}}>
+        <AuthContext.Provider value={{isAuthenticated, dispatch}}>
             {children}
         </AuthContext.Provider>
     )
 }
-
-
-

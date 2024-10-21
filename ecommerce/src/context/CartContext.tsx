@@ -8,7 +8,7 @@ const defaultCartContextValue = {
 
 export const CartContext = createContext<CartContextProps>(defaultCartContextValue)
 
-const reducer = (state: QuantityCartItem[], action:  Action) => {
+const reducer = (state: QuantityCartItem[], action: Action) => {
 
     switch (action.type) {
         case 'ADD_TO_CART':

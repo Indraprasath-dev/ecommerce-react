@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
 import Button from "./Button";
 import CountButtons from "./CountButtons";
+import { ACTION } from "../enum/CartEnum";
 
 interface CartCardProps {
     id: number,
@@ -29,7 +30,7 @@ const CartCard = ({ id, product, price, image, quantity }: CartCardProps) => {
                 </CountButtons>
 
                 <Button
-                    onClick={() => dispatch({ type: 'CLEAR_CART_ITEM', payload: id})} variant="danger" className="ml-3">
+                    onClick={() => dispatch({ type: ACTION.CLEAR_CART_ITEM, payload: id})} variant="danger" className="ml-3">
                     Remove
                 </Button>
             </div>

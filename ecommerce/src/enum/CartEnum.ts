@@ -1,4 +1,4 @@
-export enum ActionType {
+export enum ACTION {
     ADD_TO_CART = 'ADD_TO_CART',
     REMOVE_FROM_CART = 'REMOVE_FROM_CART',
     ADD_FROM_CART = 'ADD_FROM_CART',
