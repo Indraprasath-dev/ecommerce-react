@@ -13,7 +13,7 @@ ApiService.interceptors.request.use((config: any) => {
         config.headers.Authorization = `Bearer ${token}`
     }
     return config
-    },
+},
     (error: any) => {
         console.log("Request error : ", error)
         return Promise.reject(error)
@@ -22,7 +22,7 @@ ApiService.interceptors.request.use((config: any) => {
 
 ApiService.interceptors.response.use((response: any) => {
     return response
-    },
+},
     (error: any) => {
         if (error.response && error.response.status === 401) {
             console.log("Unauthorized. Token espired")
